@@ -1,7 +1,7 @@
 $(document).ready(function () {
     listarEscuela();
+    limpiar();
 });
-var bandera;
 function listarEscuela() {
 
     $.get("ec", {"opc": 1}, function (data) {
@@ -16,22 +16,20 @@ function agregar() {
     $("#myModal").modal('show');
 }
 function add() {
-    bandera = $("#id").val();
-    if (bandera=== 0) {
+    if ($("#id").val()=== '0') {
         var id = $("#id").val();
         var idfacu = $("#facultad").val();
         var escuela = $("#escuela").val();
         $.post("ec", {"idfacu": idfacu, "escuela": escuela, "opc": 2}, function (data) {
             listarEscuela();
+            limpiar();
             $("#myModal").modal('hide');
         });
     } else {
-        alert("modificar");
         actualizar();
     }
 }
 function del(x) {
-    alert(x);
     $.get("ec", {"idesc": x, "opc": 4}, function () {
         listarEscuela();
     });
@@ -45,17 +43,20 @@ function editar(x) {
     });
     $("#myModal").modal('show');
 }
-
+function limpiar(){
+    $("#facultad").val(0);
+    $("#escuela").val("");
+    $("#id").val(0);
+}
 function actualizar(){
     var idesc = $("#id").val();
     var escuela = $("#escuela").val();
     var idfacu = $("#facultad").val();
     $.post("ec",{"idesc":idesc,"escuela":escuela, "idfacu":idfacu,"opc":3}, function () {
         listarEscuela();
-        $("#id").val(0);
-        bandera = 0;
+        limpiar();
     });
-    alert($("#id").val());
+    
     $("#myModal").modal('hide');
     
 }
