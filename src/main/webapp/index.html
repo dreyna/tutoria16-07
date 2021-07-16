@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Start Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="recursos/faw/web-fonts-with-css/css/fontawesome-all.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="recursos/css/bootstrap.min.css"/>
+    </head>
+    <body>
+        <div class="container" style="max-width: 450px">
+            <h1>Escuela</h1>
+            <hr>
+            <a  href="#" onclick="agregar()">Add</a>
+            <table class="table" id="tablita">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Facultad</th>
+                        <th scope="col">Escuela</th>
+                        <th scope="col" colspan="2">Accion</th>
+                    </tr>
+                </thead>
+                <tbody >             
+                </tbody>
+            </table>
+        </div>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Nueva Escuela</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Facultad:</label>
+                                <select name="facultad" id="facultad" class="form-control">
+                                    <option value="0">Seleccionar Facultad</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Escuela:</label>
+                                <input type="text" class="form-control" id="escuela">
+                                <input type="hidden" id="id" value="0">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="add()">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="recursos/js/jquery-3.3.1.min.js"></script>
+        <script src="recursos/js/bootstrap.min.js"></script>
+        <script src="recursos/js/escuela.js"></script>
+        <script src="recursos/js/facultad.js"></script>
+    </body>
+</html>
