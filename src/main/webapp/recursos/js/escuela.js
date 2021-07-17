@@ -16,23 +16,65 @@ function agregar() {
     $("#myModal").modal('show');
 }
 function add() {
-    if ($("#id").val()=== '0') {
+    if ($("#id").val() === '0') {
         var id = $("#id").val();
         var idfacu = $("#facultad").val();
         var escuela = $("#escuela").val();
-        $.post("ec", {"idfacu": idfacu, "escuela": escuela, "opc": 2}, function (data) {
-            listarEscuela();
-            limpiar();
-            $("#myModal").modal('hide');
-        });
+        /**/
+        if (idfacu !== 0 && escuela !== "") {
+            $.post("ec", {"idfacu": idfacu, "escuela": escuela, "opc": 2}, function (data) {
+                listarEscuela();
+                limpiar();
+                $("#myModal").modal('hide');
+                bootbox.alert({
+                    message: "La escuela " + escuela + " registrado correctamente...!",
+                    backdrop: true
+                });
+            });
+        } else {
+            bootbox.alert({
+                message: "No se ha seleccionado facultad o sea ingresado una escuela...!",
+                backdrop: true
+            });
+        }
+        /**/
     } else {
         actualizar();
     }
 }
 function del(x) {
-    $.get("ec", {"idesc": x, "opc": 4}, function () {
-        listarEscuela();
+    bootbox.confirm({
+        message: "Realmente desea eliminar ?",
+        buttons: {
+            confirm: {
+                label: 'Yes',
+                className: 'btn-success'
+            },
+            cancel: {
+                label: 'No',
+                className: 'btn-danger'
+            }
+        },
+        callback: function (result) {
+            if (result) {
+                $.get("ec", {"idesc": x, "opc": 4}, function () {
+                    listarEscuela();
+                    bootbox.alert({
+                        message: "La escuela ha sido eliminado correctamente...!",
+                        backdrop: true
+                    });
+                });
+            } else {
+                bootbox.alert({
+                    message: "No se eliminó la escuela",
+                    size: 'small'
+                });
+                limpiar();
+            }
+
+        }
     });
+
 }
 function editar(x) {
     $.get("ec", {"opc": 5, "idesc": x}, function (data) {
@@ -43,20 +85,49 @@ function editar(x) {
     });
     $("#myModal").modal('show');
 }
-function limpiar(){
+function limpiar() {
     $("#facultad").val(0);
     $("#escuela").val("");
     $("#id").val(0);
 }
-function actualizar(){
+function actualizar() {
     var idesc = $("#id").val();
     var escuela = $("#escuela").val();
     var idfacu = $("#facultad").val();
-    $.post("ec",{"idesc":idesc,"escuela":escuela, "idfacu":idfacu,"opc":3}, function () {
-        listarEscuela();
-        limpiar();
+    bootbox.confirm({
+        message: "Realmente desea modificar la escuela " + escuela + "?",
+        buttons: {
+            confirm: {
+                label: 'Yes',
+                className: 'btn-success'
+            },
+            cancel: {
+                label: 'No',
+                className: 'btn-danger'
+            }
+        },
+        callback: function (result) {
+            if (result) {
+                $.post("ec", {"idesc": idesc, "escuela": escuela, "idfacu": idfacu, "opc": 3}, function () {
+                    listarEscuela();
+                    limpiar();
+                    bootbox.alert({
+                        message: "La escuela " + escuela + " ha sido modificado correctamente...!",
+                        backdrop: true
+                    });
+                });
+            } else {
+                bootbox.alert({
+                    message: "No se modificó la escuela " + escuela + "!",
+                    size: 'small'
+                });
+                limpiar();
+            }
+
+        }
     });
-    
+
+
     $("#myModal").modal('hide');
-    
+
 }
