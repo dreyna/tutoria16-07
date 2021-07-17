@@ -20,8 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  * @author dreyna
  */
 public class EscuelaController extends HttpServlet {
-private EscuelaDaoImpl esc = new EscuelaDaoImpl();
-private Gson gson = new Gson();
+private final EscuelaDaoImpl esc = new EscuelaDaoImpl();
+private final Gson gson = new Gson();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.

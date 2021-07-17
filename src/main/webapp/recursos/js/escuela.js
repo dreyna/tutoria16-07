@@ -8,7 +8,7 @@ function listarEscuela() {
         var x = JSON.parse(data);
         $("#tablita tbody tr").remove();
         for (var i = 0; i < x.length; i++) {
-            $("#tablita").append("<tr><td>" + (i + 1) + "</td><td>" + x[i].facultad + "</td><td>" + x[i].escuela + "</td><td><a href='#' onclick='editar(" + x[i].idescuela + ")'><i class='far fa-edit'></i></a></td><td><a href='#' onclick='del(" + x[i].idescuela + ")'><i class='fas fa-trash-alt'></i></a></td></tr>");
+            $("#tablita").append("<tr><td>" + (i + 1) + "</td><td>" + x[i].facultad + "</td><td>" + x[i].escuela + "</td><td><a href='#' onclick='editar(" + x[i].idescuela + ")' class='edit'><i class='far fa-edit'></i></a></td><td><a href='#' onclick='del(" + x[i].idescuela + ")' class='del'><i class='fas fa-trash-alt'></i></a></td></tr>");
         }
     });
 }

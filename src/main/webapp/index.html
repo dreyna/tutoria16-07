@@ -5,12 +5,22 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="recursos/faw/web-fonts-with-css/css/fontawesome-all.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="recursos/css/bootstrap.min.css"/>
+        <style>
+            .del{
+                color: red;
+                font-weight: bold;
+            }
+            .edit{
+                color: orange;
+                font-weight: bold;
+            }
+        </style>
     </head>
     <body>
         <div class="container" style="max-width: 450px">
             <h1>Escuela</h1>
             <hr>
-            <a  href="#" onclick="agregar()">Add</a>
+            <button  onclick="agregar()" class="btn btn-success">Add</button>
             <table class="table" id="tablita">
                 <thead>
                     <tr>
